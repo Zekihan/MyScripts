@@ -5,7 +5,8 @@ Created on Mon Sep 16 15:26:17 2019
 @author: Zekihan
 """
 
-from tkinter import Tk,Scrollbar,RIGHT,Listbox,END,re,mainloop,Y,BOTH
+from tkinter import Tk,Scrollbar,RIGHT,Listbox,END,re,LEFT,mainloop,Y,BOTH
+from tkinter import *
 import webbrowser
 
 def callback(evt):
@@ -14,7 +15,7 @@ def callback(evt):
     if index%4 == 1:
         url = w.get(index)
         webbrowser.open_new(url)
-  
+    
 def get_recent_updates():
     import requests
     from bs4 import BeautifulSoup
@@ -71,19 +72,7 @@ def get_recent_updates():
     mylist.pack( fill = BOTH, expand=True)  
     sb.config( command = mylist.yview )  
       
-    mainloop()
-import sys
+    mainloop()  
 
-def main():
-    try:
-        get_recent_updates()
-    except:
-        e = sys.exc_info()[1]
-        path = "C://Users//Zekihan//Desktop//Coding//MyScripts//log.txt"
-        message = "Failed due to \"%s\"." %e
-        f= open(path,"a+")
-        f.write("%s \n" %message)
-        f.close()
-        main()
-        
-main()
+
+get_recent_updates()
