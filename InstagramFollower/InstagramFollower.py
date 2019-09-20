@@ -10,14 +10,21 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
 import sys
+import os
+import json
+
+closed = True
 
 class InstagramBot():
+    
     def __init__(self, email, password):
         self.browserProfile = webdriver.ChromeOptions()
         self.browserProfile.add_experimental_option('prefs', {'intl.accept_languages': 'en,en_US'})
-        self.browser = webdriver.Chrome('C:\\Coding\\chromedriver.exe', options=self.browserProfile)
+        self.browser = webdriver.Chrome('C:\\Coding\\Programs\\chromedriver.exe', options=self.browserProfile)
         self.email = email
         self.password = password
+        global closed
+        closed = False
 
     def signIn(self):
         self.browser.get('https://www.instagram.com/accounts/login/')
@@ -104,14 +111,13 @@ class InstagramBot():
         numberOfFollowersInList = len(followedList.find_elements_by_css_selector('li'))
     
         followedList.click()
-        time.sleep(0.5)
         actionChain = webdriver.ActionChains(self.browser)
         while (numberOfFollowersInList < max):
             actionChain.key_down(Keys.SPACE).key_up(Keys.SPACE).perform()
             numberOfFollowersInList = len(followedList.find_elements_by_css_selector('li'))
             print(numberOfFollowersInList)
-            time.sleep(0.5)
             followedList.click()
+            time.sleep(0.5)
 
         
         followed = []
@@ -124,22 +130,73 @@ class InstagramBot():
         return followed
     
     def closeBrowser(self):
+        self.closed = True
         self.browser.close()
 
     def __exit__(self, exc_type, exc_value, traceback):
+        self.closed = True
         self.closeBrowser()
    
+def inf_try(method,param1):
+    complete = False
+    while (not complete):
+        try:
+            result = method(param1)
+            complete = True
+            return result
+        except:
+            complete = False
+            e = sys.exc_info()[1]
+            print(e)
+
+def save_results(mDict):
+    my_path = os.path.abspath(os.path.dirname(__file__))
+    path = (my_path + "\\data\\results.json")
+    if not os.path.exists(my_path + "\\data"):
+        os.mkdir(my_path + "\\data")
+    if os.path.exists(path):  
+        f = open(path,"r+")
+        old = json.loads(f.read())
+        f.close()
+        mDict.update(old)
+    save = json.dumps(mDict, indent=4)
+    f= open(path,"w+")
+    f.write(save)
+    f.close()
+
+def make_dict(username, followed, followers):
+    dict4J = {}
+    utftime = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())
+    temp1 = {}
+    temp1["followed"] = followed
+    temp1["followers"] = followers
+    temp2 = {}
+    temp2[username] = temp1
+    dict4J[utftime] = temp2
     
-username = "topsitognu"
-password = "asd123"
+def followerInsight(bot,username):
+    followed = bot.getUserFollowedAll( username)
+    followers = inf_try(bot.getUserFollowersAll, username)
+    dict4J = make_dict(username, followed, followers)
+    save_results(dict4J)
+    
+    print ("\n\n\n\n--------------------------------")
+    for i in followed:
+        if not i in followers :
+            print(i)
+
+
+
+
+username = input("topsitognu")
+password = input("asd123")
 bot = InstagramBot(username,password)
 bot.signIn()
-followed = bot.getUserFollowedAll("zekihanazman")
-followers = bot.getUserFollowersAll("zekihanazman")
+followerInsight(bot, "zekihanazman")
+bot.closeBrowser()
 
 
-print ("\n\n\n\n--------------------------------")
 
-for i in followed:
-    if not i in followers :
-        print(i)
+
+
+
