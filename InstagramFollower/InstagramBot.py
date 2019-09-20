@@ -80,14 +80,13 @@ class InstagramBot():
         numberOfFollowersInList = len(followersList.find_elements_by_css_selector('li'))
     
         followersList.click()
-        time.sleep(0.5)
         actionChain = webdriver.ActionChains(self.browser)
         while (numberOfFollowersInList < max):
             actionChain.key_down(Keys.SPACE).key_up(Keys.SPACE).perform()
             numberOfFollowersInList = len(followersList.find_elements_by_css_selector('li'))
             print(numberOfFollowersInList)
-            time.sleep(0.5)
             followersList.click()
+            time.sleep(0.5)
 
         
         followers = []
@@ -109,13 +108,20 @@ class InstagramBot():
         time.sleep(2)
         followedList = self.browser.find_element_by_css_selector('div[role=\'dialog\'] ul')
         numberOfFollowersInList = len(followedList.find_elements_by_css_selector('li'))
-    
+        
+        global x
         followedList.click()
         actionChain = webdriver.ActionChains(self.browser)
         while (numberOfFollowersInList < max):
             actionChain.key_down(Keys.SPACE).key_up(Keys.SPACE).perform()
             numberOfFollowersInList = len(followedList.find_elements_by_css_selector('li'))
-            print(numberOfFollowersInList)
+            x = []
+            for user in followedList.find_elements_by_css_selector('li'):
+                userLink = user.find_element_by_css_selector('a').get_attribute('href')
+                print(userLink)
+                x.append(userLink)
+                if (len(x) == max):
+                    break
             followedList.click()
             time.sleep(0.5)
 
@@ -158,25 +164,42 @@ def save_results(mDict):
         f = open(path,"r+")
         old = json.loads(f.read())
         f.close()
-        mDict.update(old)
-    save = json.dumps(mDict, indent=4)
+        x = old.values()
+        x = list(x)
+        d1 = int(x[0][0]["time"])
+        d2 = int(x[0][1]["time"])
+        if d1 > d2:
+            old["raw_data"] = [mDict, x[0][0]]
+        else:
+            old["raw_data"] = [mDict, x[0][1]]
+    else:
+        old = {"raw_data" : [mDict,mDict], "insight" : {"lostfollowers":[],"discardfollowers":[]}}
+    save = json.dumps(old, indent=4)
     f= open(path,"w+")
     f.write(save)
     f.close()
 
 def make_dict(username, followed, followers):
-    dict4J = {}
-    utftime = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())
-    temp1 = {}
-    temp1["followed"] = followed
-    temp1["followers"] = followers
-    temp2 = {}
-    temp2[username] = temp1
-    dict4J[utftime] = temp2
+    
+    utftime = time.time_ns()
+    
+    dict4J = {
+                "timestamp" : utftime,
+                "data" : 
+                    { 
+                        username : 
+                            {
+                                "followed" : followed,
+                                "followers" : followers
+                            }
+                    }
+            }
+
+    return dict4J
     
 def followerInsight(bot,username):
     followed = bot.getUserFollowedAll( username)
-    followers = inf_try(bot.getUserFollowersAll, username)
+    followers = bot.getUserFollowersAll( username)
     dict4J = make_dict(username, followed, followers)
     save_results(dict4J)
     
@@ -185,11 +208,17 @@ def followerInsight(bot,username):
         if not i in followers :
             print(i)
 
+def get_credentials():
+    my_path = os.path.abspath(os.path.dirname(__file__))
+    path = (my_path + "\\data\\credentials")
+    f = open(path,"r+")
+    username = f.readline()
+    password = f.readline()
+    f.close()
+    return username, password
 
-
-
-username = input("topsitognu")
-password = input("asd123")
+x = []
+username, password = get_credentials()
 bot = InstagramBot(username,password)
 bot.signIn()
 followerInsight(bot, "zekihanazman")
