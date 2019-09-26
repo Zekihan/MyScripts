@@ -71,8 +71,8 @@ class InstagramBot():
     def getUserFollowersAll(self, username):
         self.browser.get('https://www.instagram.com/' + username)
         time.sleep(1)
-        max = self.browser.find_element_by_xpath('//*[@id="react-root"]/section/main/div/header/section/ul/li[2]/a/span').get_property("title")
-        max = int(max)
+        max = self.browser.find_element_by_xpath('//*[@id="react-root"]/section/main/div/header/section/ul/li[2]/a/span')
+        max = int(max.get_property("outerText"))
         followersLink = self.browser.find_element_by_css_selector('ul li a')
         followersLink.click()
         time.sleep(2)
@@ -82,11 +82,11 @@ class InstagramBot():
         followersList.click()
         actionChain = webdriver.ActionChains(self.browser)
         while (numberOfFollowersInList < max):
-            actionChain.key_down(Keys.SPACE).key_up(Keys.SPACE).perform()
+            actionChain.move_to_element(followersList).send_keys_to_element(followersList,Keys.SHIFT).key_down(Keys.SPACE).key_up(Keys.SPACE).perform()
             numberOfFollowersInList = len(followersList.find_elements_by_css_selector('li'))
             print(numberOfFollowersInList)
-            followersList.click()
-            time.sleep(0.5)
+            time.sleep(0.75)
+            
 
         
         followers = []
@@ -107,23 +107,15 @@ class InstagramBot():
         followersLink.click()
         time.sleep(2)
         followedList = self.browser.find_element_by_css_selector('div[role=\'dialog\'] ul')
-        numberOfFollowersInList = len(followedList.find_elements_by_css_selector('li'))
-        
-        global x
+        numberOfFollowedInList = len(followedList.find_elements_by_css_selector('li'))
+
         followedList.click()
         actionChain = webdriver.ActionChains(self.browser)
-        while (numberOfFollowersInList < max):
-            actionChain.key_down(Keys.SPACE).key_up(Keys.SPACE).perform()
-            numberOfFollowersInList = len(followedList.find_elements_by_css_selector('li'))
-            x = []
-            for user in followedList.find_elements_by_css_selector('li'):
-                userLink = user.find_element_by_css_selector('a').get_attribute('href')
-                print(userLink)
-                x.append(userLink)
-                if (len(x) == max):
-                    break
-            followedList.click()
-            time.sleep(0.5)
+        while (numberOfFollowedInList < max):
+            actionChain.move_to_element(followedList).send_keys_to_element(followedList,Keys.SHIFT).key_down(Keys.SPACE).key_up(Keys.SPACE).perform()
+            numberOfFollowedInList = len(followedList.find_elements_by_css_selector('li'))
+            print(numberOfFollowedInList)
+            time.sleep(0.75)
 
         
         followed = []
@@ -166,8 +158,8 @@ def save_results(mDict):
         f.close()
         x = old.values()
         x = list(x)
-        d1 = int(x[0][0]["time"])
-        d2 = int(x[0][1]["time"])
+        d1 = int(x[0][0]["timestamp"])
+        d2 = int(x[0][1]["timestamp"])
         if d1 > d2:
             old["raw_data"] = [mDict, x[0][0]]
         else:
@@ -198,15 +190,13 @@ def make_dict(username, followed, followers):
     return dict4J
     
 def followerInsight(bot,username):
-    followed = bot.getUserFollowedAll( username)
+    
     followers = bot.getUserFollowersAll( username)
+    followed = bot.getUserFollowedAll( username)
+    
     dict4J = make_dict(username, followed, followers)
     save_results(dict4J)
     
-    print ("\n\n\n\n--------------------------------")
-    for i in followed:
-        if not i in followers :
-            print(i)
 
 def get_credentials():
     my_path = os.path.abspath(os.path.dirname(__file__))
@@ -217,7 +207,6 @@ def get_credentials():
     f.close()
     return username, password
 
-x = []
 username, password = get_credentials()
 bot = InstagramBot(username,password)
 bot.signIn()

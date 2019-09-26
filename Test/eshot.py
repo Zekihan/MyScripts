@@ -19,21 +19,25 @@ def get_time_table(busId, direction1="", direction2=""):
     for j in range(1,len(content)):
         time_part = content[j]
         c = time_part.split('<ul class="timescape">')
-        temp = []
-        direct1 = []
-        direct1_raw = c[1]
-        time_table1 = direct1_raw.split('<span class="pull-left">');
-        for i in time_table1:
-            direct1.append(i.split('</span>')[0])
-        temp.append(direct1[1::])
-
-        direct2 = []
-        direct2_raw = c[2]
-        time_table2 = direct2_raw.split('<span class="pull-left">');
-        for i in time_table2:
-            direct2.append(i.split('</span>')[0])
-        temp.append(direct2[1::])
-        time_table.append(temp)
+        if len(c) == 3:
+            temp = []
+            direct1 = []
+            direct1_raw = c[1]
+            time_table1 = direct1_raw.split('<span class="pull-left">');
+            for i in time_table1:
+                direct1.append(i.split('</span>')[0])
+            temp.append(direct1[1::])
+    
+            direct2 = []
+            direct2_raw = c[2]
+            time_table2 = direct2_raw.split('<span class="pull-left">');
+            for i in time_table2:
+                direct2.append(i.split('</span>')[0])
+            temp.append(direct2[1::])
+            time_table.append(temp)
+        else:
+            temp = [[],[]]
+            time_table.append(temp)
 
     if direction1 == "":
         direction1 = direct1[0].split('<h4>')[1].split('</h4>')[0].split(' ')[0].lower()
@@ -65,11 +69,19 @@ def get_time_table(busId, direction1="", direction2=""):
     return result_dict
 
 
-busId = input("Write the bus id.")
+#busId = input("Write the bus id.")
+busId = 882
 
 #default tags
 result = get_time_table(busId)
 #custom tags
 result = get_time_table(busId,"balıklıova","izmir")
+
+print(result)
+
+#input("Press any key to exit.")
+
+
+
 
 
