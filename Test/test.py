@@ -5,71 +5,64 @@ Created on Mon Sep 16 15:26:17 2019
 @author: Zekihan
 """
 
-import requests
+path = "C:\\Users\\Zekihan\\Desktop\\logcat.txt"
 
-def get_time_table(busId, direction1="", direction2=""):
+f = open(path,"r+", encoding="ISO-8859-1")
+logs = f.readlines()
+f.close()
 
-    time_table = []
+data = []
+for log in logs:
+    if "COMMAND_GET_CURRENT_BATTERY_LEVEL " in log:
+        data.append(log)
 
-    url = f"https://www.eshot.gov.tr/tr/UlasimSaatleri/288?bisikletAparatliMi=False&hatId={busId}&hatYon=0"
-    response = requests.get(url)
+data_l1 = []
+data_l2 = []
+data_l3 = []
+data_l4 = []
+data_l5 = []
 
-    content = response.text.split('<div class="col-md-4 col-sm-12 col-xs-12">')
+for i in data:
+    if i.split("Battery level : ")[1].split(" charging state : ")[0] == "1":
+        data_l1.append(int(i.split(" battVoltage : ")[1].split(",  Battery level : ")[0]))
+    if i.split("Battery level : ")[1].split(" charging state : ")[0] == "2":
+        data_l2.append(int(i.split(" battVoltage : ")[1].split(",  Battery level : ")[0]))
+    if i.split("Battery level : ")[1].split(" charging state : ")[0] == "3":
+        data_l3.append(int(i.split(" battVoltage : ")[1].split(",  Battery level : ")[0]))
+    if i.split("Battery level : ")[1].split(" charging state : ")[0] == "4":
+        data_l4.append(int(i.split(" battVoltage : ")[1].split(",  Battery level : ")[0]))
+    if i.split("Battery level : ")[1].split(" charging state : ")[0] == "5":
+        data_l5.append(int(i.split(" battVoltage : ")[1].split(",  Battery level : ")[0]))
 
-    for j in range(1,len(content)):
-        time_part = content[j]
-        c = time_part.split('<ul class="timescape">')
-        temp = []
-        direct1 = []
-        direct1_raw = c[1]
-        time_table1 = direct1_raw.split('<span class="pull-left">');
-        for i in time_table1:
-            direct1.append(i.split('</span>')[0])
-        temp.append(direct1[1::])
+abs_max = max(data_l5)
+abs_low = min(data_l1)
+print(abs_low)
+print(abs_max)
+x = abs_max - abs_low
 
-        direct2 = []
-        direct2_raw = c[2]
-        time_table2 = direct2_raw.split('<span class="pull-left">');
-        for i in time_table2:
-            direct2.append(i.split('</span>')[0])
-        temp.append(direct2[1::])
-        time_table.append(temp)
+for i in data_l1:
+    print(round((i - abs_low)/x*100))
+    
+print("\n")
 
-    if direction1 == "":
-        direction1 = direct1[0].split('<h4>')[1].split('</h4>')[0].split(' ')[0].lower()
+for i in data_l2:
+    print(round((i - abs_low)/x*100))
+        
+print("\n")
 
-    if direction2 == "":
-        direction2 = direct2[0].split('<h4>')[1].split('</h4>')[0].split(' ')[0].lower()
+for i in data_l3:
+    print(round((i - abs_low)/x*100))
+    
+print("\n")
 
-    result_dict = {
-                    f"bus_{busId}" :
-                        {
-                            "saturday" :
-                                {
-                                    f"{direction1}_{direction2}" : time_table[1][0],
-                                    f"{direction2}_{direction1}" : time_table[1][1]
-                                },
-                            "sunday" :
-                                {
-                                    f"{direction1}_{direction2}" : time_table[2][0],
-                                    f"{direction2}_{direction1}" : time_table[2][1]
-                                },
-                            "weekday" :
-                                {
-                                    f"{direction1}_{direction2}" : time_table[0][0],
-                                    f"{direction2}_{direction1}" : time_table[0][1]
-                                }
-                        }
-                    }
+for i in data_l4:
+    print(round((i - abs_low)/x*100))
+    
+print("\n")
 
-    return result_dict
+for i in data_l5:
+    print(round((i - abs_low)/x*100))
 
 
-busId = input("Write the bus id.")
-
-#default tags
-result = get_time_table(busId)
-#custom tags
-result = get_time_table(busId,"balıklıova","izmir")
 
 
