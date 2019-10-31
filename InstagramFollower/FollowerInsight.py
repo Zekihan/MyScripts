@@ -10,9 +10,9 @@ import json
 def open_data():
     global mdict
     my_path = os.path.abspath(os.path.dirname(__file__))
-    path = (my_path + "\\data\\results.json")
-    if not os.path.exists(my_path + "\\data"):
-        os.mkdir(my_path + "\\data")
+    path = os.path.join(my_path, "data", "results.json")
+    if not os.path.exists(os.path.join(my_path, "data")):
+        os.mkdir(os.path.join(my_path, "data"))
     if os.path.exists(path):  
         f = open(path,"r+")
         old = json.loads(f.read())
@@ -93,9 +93,9 @@ def init(username):
 
 def save_results():
     my_path = os.path.abspath(os.path.dirname(__file__))
-    path = (my_path + "\\data\\results.json")
-    if not os.path.exists(my_path + "\\data"):
-        os.mkdir(my_path + "\\data")
+    path = (os.path.join(my_path, "data", "results.json"))
+    if not os.path.exists(os.path.join(my_path, "data")):
+        os.mkdir(os.path.join(my_path, "data"))
     if os.path.exists(path):  
         old = {"raw_data" : mdict["raw_data"], "insight": {
         "both_follow" : both_follow,

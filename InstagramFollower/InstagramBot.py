@@ -12,6 +12,7 @@ import time
 import sys
 import os
 import json
+import getpass
 
 closed = True
 
@@ -20,7 +21,7 @@ class InstagramBot():
     def __init__(self, email, password):
         self.browserProfile = webdriver.ChromeOptions()
         self.browserProfile.add_experimental_option('prefs', {'intl.accept_languages': 'en,en_US'})
-        self.browser = webdriver.Chrome('C:\\Coding\\Programs\\chromedriver.exe', options=self.browserProfile)
+        self.browser = webdriver.Chrome("chromedriver", options=self.browserProfile)
         self.email = email
         self.password = password
         global closed
@@ -71,8 +72,8 @@ class InstagramBot():
     def getUserFollowersAll(self, username):
         self.browser.get('https://www.instagram.com/' + username)
         time.sleep(1)
-        max = self.browser.find_element_by_xpath('//*[@id="react-root"]/section/main/div/header/section/ul/li[2]/a/span')
-        max = int(max.get_property("outerText"))
+        max_ = self.browser.find_element_by_xpath('//*[@id="react-root"]/section/main/div/header/section/ul/li[2]/a/span')
+        max_ = int(max_.get_property("outerText"))
         followersLink = self.browser.find_element_by_css_selector('ul li a')
         followersLink.click()
         time.sleep(2)
@@ -81,11 +82,11 @@ class InstagramBot():
     
         followersList.click()
         actionChain = webdriver.ActionChains(self.browser)
-        while (numberOfFollowersInList < max):
+        while (numberOfFollowersInList < max_):
             actionChain.move_to_element(followersList).send_keys_to_element(followersList,Keys.SHIFT).key_down(Keys.SPACE).key_up(Keys.SPACE).perform()
             numberOfFollowersInList = len(followersList.find_elements_by_css_selector('li'))
-            print(numberOfFollowersInList)
-            time.sleep(0.75)
+            print("\t\t"+str(numberOfFollowersInList))
+            time.sleep(0.85)
             
 
         
@@ -94,15 +95,15 @@ class InstagramBot():
             userLink = user.find_element_by_css_selector('a').get_attribute('href')
             print(userLink)
             followers.append(userLink)
-            if (len(followers) == max):
+            if (len(followers) == max_):
                 break
         return followers
     
     def getUserFollowedAll(self, username):
         self.browser.get('https://www.instagram.com/' + username)
         time.sleep(1)
-        max = self.browser.find_element_by_css_selector('#react-root > section > main > div > header > section > ul > li:nth-child(3) > a > span')
-        max = int(max.get_property("outerText"))
+        max_ = self.browser.find_element_by_css_selector('#react-root > section > main > div > header > section > ul > li:nth-child(3) > a > span')
+        max_ = int(max_.get_property("outerText"))
         followersLink = self.browser.find_element_by_css_selector('#react-root > section > main > div > header > section > ul > li:nth-child(3) > a')
         followersLink.click()
         time.sleep(2)
@@ -111,11 +112,11 @@ class InstagramBot():
 
         followedList.click()
         actionChain = webdriver.ActionChains(self.browser)
-        while (numberOfFollowedInList < max):
+        while (numberOfFollowedInList < max_):
             actionChain.move_to_element(followedList).send_keys_to_element(followedList,Keys.SHIFT).key_down(Keys.SPACE).key_up(Keys.SPACE).perform()
             numberOfFollowedInList = len(followedList.find_elements_by_css_selector('li'))
-            print(numberOfFollowedInList)
-            time.sleep(0.75)
+            print("\t\t"+str(numberOfFollowedInList))
+            time.sleep(0.85)
 
         
         followed = []
@@ -123,7 +124,53 @@ class InstagramBot():
             userLink = user.find_element_by_css_selector('a').get_attribute('href')
             print(userLink)
             followed.append(userLink)
-            if (len(followed) == max):
+            if (len(followed) == max_):
+                break
+        return followed
+    
+    def getUserFollowersAll_User(self, username):
+        self.browser.get('https://www.instagram.com/' + username)
+        time.sleep(1)
+        max_ = self.browser.find_element_by_xpath('//*[@id="react-root"]/section/main/div/header/section/ul/li[2]/a/span')
+        max_ = int(max_.get_property("outerText"))
+        followersLink = self.browser.find_element_by_css_selector('ul li a')
+        followersLink.click()
+        time.sleep(2)
+        followersList = self.browser.find_element_by_css_selector('div[role=\'dialog\'] ul')
+    
+        followersList.click()            
+
+        wait = getpass.getpass("Press Enter after You are done logging in")
+        
+        followers = []
+        for user in followersList.find_elements_by_css_selector('li'):
+            userLink = user.find_element_by_css_selector('a').get_attribute('href')
+            print(userLink)
+            followers.append(userLink)
+            if (len(followers) == max_):
+                break
+        return followers
+    
+    def getUserFollowedAll_User(self, username):
+        self.browser.get('https://www.instagram.com/' + username)
+        time.sleep(1)
+        max_ = self.browser.find_element_by_css_selector('#react-root > section > main > div > header > section > ul > li:nth-child(3) > a > span')
+        max_ = int(max_.get_property("outerText"))
+        followersLink = self.browser.find_element_by_css_selector('#react-root > section > main > div > header > section > ul > li:nth-child(3) > a')
+        followersLink.click()
+        time.sleep(2)
+        followedList = self.browser.find_element_by_css_selector('div[role=\'dialog\'] ul')
+
+        followedList.click()
+        
+        wait = getpass.getpass("Press Enter after You are done logging in")
+        
+        followed = []
+        for user in followedList.find_elements_by_css_selector('li'):
+            userLink = user.find_element_by_css_selector('a').get_attribute('href')
+            print(userLink)
+            followed.append(userLink)
+            if (len(followed) == max_):
                 break
         return followed
     
@@ -135,23 +182,12 @@ class InstagramBot():
         self.closed = True
         self.closeBrowser()
    
-def inf_try(method,param1):
-    complete = False
-    while (not complete):
-        try:
-            result = method(param1)
-            complete = True
-            return result
-        except:
-            complete = False
-            e = sys.exc_info()[1]
-            print(e)
 
 def save_results(mDict):
     my_path = os.path.abspath(os.path.dirname(__file__))
-    path = (my_path + "\\data\\results.json")
-    if not os.path.exists(my_path + "\\data"):
-        os.mkdir(my_path + "\\data")
+    path = os.path.join(my_path,"data","results.json")
+    if not os.path.exists(os.path.join(my_path,"data")):
+        os.mkdir(os.path.join(my_path,"data"))
     if os.path.exists(path):  
         f = open(path,"r+")
         old = json.loads(f.read())
@@ -165,7 +201,15 @@ def save_results(mDict):
         else:
             old["raw_data"] = [mDict, x[0][1]]
     else:
-        old = {"raw_data" : [mDict,mDict], "insight" : {"lostfollowers":[],"discardfollowers":[]}}
+        old = {"raw_data" : [mDict,mDict], "insight": {
+        "both_follow" : [],
+		"i_follow" : [],
+		"you_follow" : [],
+		"lostfollowers" : [],
+		"discardfollowers" : [],
+		"new_followers" : [],
+		"new_followed" : []
+        }}
     save = json.dumps(old, indent=4)
     f= open(path,"w+")
     f.write(save)
@@ -173,7 +217,7 @@ def save_results(mDict):
 
 def make_dict(username, followed, followers):
     
-    utftime = time.time_ns()
+    utftime = int(time.time())
     
     dict4J = {
                 "timestamp" : utftime,
@@ -191,8 +235,8 @@ def make_dict(username, followed, followers):
     
 def followerInsight(bot,username):
     
-    followers = bot.getUserFollowersAll( username)
-    followed = bot.getUserFollowedAll( username)
+    followers = bot.getUserFollowersAll_User( username)
+    followed = bot.getUserFollowedAll_User( username)
     
     dict4J = make_dict(username, followed, followers)
     save_results(dict4J)
@@ -200,18 +244,24 @@ def followerInsight(bot,username):
 
 def get_credentials():
     my_path = os.path.abspath(os.path.dirname(__file__))
-    path = (my_path + "\\data\\credentials")
+    path = os.path.join(my_path,"data","credentials")
     f = open(path,"r+")
     username = f.readline()
     password = f.readline()
     f.close()
     return username, password
 
+#someVariable = getpass.getpass("Press Enter after You are done logging in")
+
 username, password = get_credentials()
 bot = InstagramBot(username,password)
-bot.signIn()
-followerInsight(bot, "zekihanazman")
-bot.closeBrowser()
+try:
+    bot.signIn()
+    followerInsight(bot, "zekihanazman")
+    bot.closeBrowser()
+except Exception as e:
+    print(e)
+    bot.closeBrowser()
 
 
 
