@@ -14,7 +14,7 @@ import json
 
 def get_lists(username, password):
     
-
+    print("Logging in")
     followees = []
     followers = []
     
@@ -24,7 +24,9 @@ def get_lists(username, password):
     L.login(username, password)        # (login)
     #L.interactive_login(username)      # (ask password on terminal)
     
-    profile = instaloader.Profile.from_username(L.context, "zekihanazman")
+    print("Type in username")
+    answer = input()
+    profile = instaloader.Profile.from_username(L.context, answer)
     
     print("Starting to get followees")
     for followee in profile.get_followees():
@@ -39,7 +41,7 @@ def get_lists(username, password):
 
 def write_data(followees, followers):
     
-    
+    print("Writing data")
     my_path = os.path.abspath(os.path.dirname(__file__))
     path = os.path.join(my_path, "data")
     if not os.path.exists(path):
@@ -77,11 +79,11 @@ def get_credentials():
             f.close()
             username, password = x.split(",")
         else:
-            print("tpye username")
+            print("Type username")
             username = input()
             password = getpass.getpass(prompt='Password: ', stream=None)
     else:
-        print("tpye username")
+        print("Type username")
         username = input()
         password = getpass.getpass(prompt='Password: ', stream=None)
         print("Do you want to save credentials (y/n)")
@@ -90,7 +92,7 @@ def get_credentials():
             f= open(path,"w+")
             f.write(username+","+password)
             f.close()
-            print("Credentials added")
+            print("Credentials saved")
     return username,password
     
     

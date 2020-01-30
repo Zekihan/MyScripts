@@ -11,6 +11,7 @@ import json
       
 def open_data():
     
+    print("Opening data")
     my_path = os.path.abspath(os.path.dirname(__file__))
     path = os.path.join(my_path, "data")
     if not os.path.exists(path):
@@ -47,6 +48,7 @@ def get_diffrence(first_list,second_list):
 
 new, old = open_data();
 
+print("Creating insight on data")
 friends = get_same(new['followees'],new['followers'])
 
 not_followers = get_diffrence(new['followees'],new['followers'])
@@ -60,6 +62,40 @@ new_followees = get_diffrence(new['followees'],old['followees'])
 lost_followers = get_diffrence(old['followers'],new['followers'])
 
 unfollowed = get_diffrence(old['followees'],new['followees'])
+
+answer = "a"
+while(answer != "q"):
+    print("To get not following press 1")
+    print("To get mutually following press 2")
+    print("To get fans press 3")
+    print("To get new followers press 4")
+    print("To get new followed press 5")
+    print("To get lost followers press 6")
+    print("To get unfolloweds press 7")
+    print("To get followers press 8")
+    print("To get followees press 9")
+    print("To quit press q")
+    answer = input()
+    if(answer == "1"):
+        print(not_followers)
+    if(answer == "2"):
+        print(friends)
+    if(answer == "3"):
+        print(blind_followers)
+    if(answer == "4"):
+        print(new_followers)
+    if(answer == "5"):
+        print(new_followees)
+    if(answer == "6"):
+        print(lost_followers)
+    if(answer == "7"):
+        print(unfollowed)
+    if(answer == "8"):
+        print(new['followers'])
+    if(answer == "9"):
+        print(new['followees']) 
+
+
 
 
 
