@@ -7,13 +7,13 @@ Created on Fri Jan 31 01:03:58 2020
 """
 
 import os
+import getpass
+import instaloader
+import json
 
-username = "allthingsdeveloper"
-password = "9All@Things@Developer9"
 
 def get_lists(username, password):
     
-    import instaloader
 
     followees = []
     followers = []
@@ -26,40 +26,19 @@ def get_lists(username, password):
     
     profile = instaloader.Profile.from_username(L.context, "zekihanazman")
     
+    print("Starting to get followees")
     for followee in profile.get_followees():
         followees.append(followee.username)
     
+    print("Starting to get followers")
     for follower in profile.get_followers():
         followers.append(follower.username)
     
     return followees, followers
 
-def get_lists_interactive(username):
-    
-    import instaloader
-
-    followees = []
-    followers = []
-    
-    L = instaloader.Instaloader()
-    
-    # Login or load session
-#    L.login(username, password)        # (login)
-    L.interactive_login(username)      # (ask password on terminal)
-    
-    profile = instaloader.Profile.from_username(L.context, "zekihanazman")
-    
-    for followee in profile.get_followees():
-        followees.append(followee.username)
-    
-    for follower in profile.get_followers():
-        followers.append(follower.username)
-    
-    return followees, followers
 
 def write_data(followees, followers):
     
-    import json
     
     my_path = os.path.abspath(os.path.dirname(__file__))
     path = os.path.join(my_path, "data")
@@ -84,7 +63,38 @@ def write_data(followees, followers):
     f= open(os.path.join(path, "data-new"),"w+")
     f.write(save)
     f.close()
+
+def get_credentials():
     
+    my_path = os.path.abspath(os.path.dirname(__file__))
+    path = os.path.join(my_path, "data", "credentials")
+    if os.path.exists(path):
+        print("There is credentials do you want to use it (y/n)")
+        answer = input()
+        if(answer == "y"):
+            f= open(path,"r+")
+            x = f.read()
+            f.close()
+            username, password = x.split(",")
+        else:
+            print("tpye username")
+            username = input()
+            password = getpass.getpass(prompt='Password: ', stream=None)
+    else:
+        print("tpye username")
+        username = input()
+        password = getpass.getpass(prompt='Password: ', stream=None)
+        print("Do you want to save credentials (y/n)")
+        answer = input()
+        if(answer == "y"):
+            f= open(path,"w+")
+            f.write(username+","+password)
+            f.close()
+            print("Credentials added")
+    return username,password
+    
+    
+username, password = get_credentials()
 followees, followers = get_lists(username,password)
 write_data(followees, followers)
 
