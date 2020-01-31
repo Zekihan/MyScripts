@@ -12,7 +12,7 @@ import instaloader
 import json
 
 
-def get_lists(username, password):
+def get_lists(username, password,usrname):
     
     print("Logging in")
     followees = []
@@ -24,9 +24,7 @@ def get_lists(username, password):
     L.login(username, password)        # (login)
     #L.interactive_login(username)      # (ask password on terminal)
     
-    print("Type in username")
-    answer = input()
-    profile = instaloader.Profile.from_username(L.context, answer)
+    profile = instaloader.Profile.from_username(L.context, usrname)
     
     print("Starting to get followees")
     for followee in profile.get_followees():
@@ -39,11 +37,11 @@ def get_lists(username, password):
     return followees, followers
 
 
-def write_data(followees, followers):
+def write_data(followees, followers, username):
     
     print("Writing data")
     my_path = os.path.abspath(os.path.dirname(__file__))
-    path = os.path.join(my_path, "data")
+    path = os.path.join(my_path, "data", username)
     if not os.path.exists(path):
         os.mkdir(path)
     
@@ -95,10 +93,13 @@ def get_credentials():
             print("Credentials saved")
     return username,password
     
-    
+
 username, password = get_credentials()
-followees, followers = get_lists(username,password)
-write_data(followees, followers)
+print("Type in username that you wish to get information")
+print("If it is private you need to login from that account")
+usrname = input()
+followees, followers = get_lists(username,password,usrname)
+write_data(followees, followers,usrname)
 
 
 

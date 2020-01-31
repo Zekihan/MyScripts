@@ -9,11 +9,11 @@ Created on Fri Jan 31 01:26:43 2020
 import os
 import json
       
-def open_data():
+def open_data(username):
     
     print("Opening data")
     my_path = os.path.abspath(os.path.dirname(__file__))
-    path = os.path.join(my_path, "data")
+    path = os.path.join(my_path, "data", username)
     if not os.path.exists(path):
         print("no data")
         exit(1)
@@ -22,13 +22,19 @@ def open_data():
         new = json.loads(f.read())
         f.close()
     else:
-        new = []
+        new = {
+                "followees" : [],
+                "followers" : []
+                }
     if os.path.exists(os.path.join(path, "data-old")):
         f = open(os.path.join(path, "data-old"),"r+")
         old = json.loads(f.read())
         f.close()
     else:
-        old = []
+        old = {
+                "followees" : [],
+                "followers" : []
+                }
     
     return new, old
 
@@ -46,7 +52,11 @@ def get_diffrence(first_list,second_list):
             l.append(i)
     return l
 
-new, old = open_data();
+
+print("Type in username that you wish to get information")
+username = input()
+
+new, old = open_data(username);
 
 print("Creating insight on data")
 friends = get_same(new['followees'],new['followers'])
