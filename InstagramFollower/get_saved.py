@@ -7,6 +7,8 @@ Created on Thu Feb  6 05:30:59 2020
 """
 
 import os
+import sys
+import json
 import getpass
 import instaloader
 
@@ -41,32 +43,38 @@ def get_credentials():
 
 def get_saved(username, password):
     
-    print("Logging in")
-    L = instaloader.Instaloader()
-    
-    # Login or load session
-    L.login(username, password)        # (login)
-    #L.interactive_login(username)      # (ask password on terminal)
+    try:
+        print("Logging in")
+        L = instaloader.Instaloader(max_connection_attempts=0)
+        
+        # Login or load session
+        L.login(username, password)        # (login)
+        #L.interactive_login(username)      # (ask password on terminal)
+    except:
+        e = sys.exc_info()[1]
+        print("Failed due to \"%s\"." %e)
+        os._exit(0)
 
     profile = instaloader.Profile.from_username(L.context, username)
 
     print("Getting saved posts")
     a = profile.get_saved_posts()
+    print(a)
 
     set_list = []
     doubles = []
+    alll = []
+    my_path = os.path.abspath(os.path.dirname(__file__))
+    path = os.path.join(my_path, "data", "test")
     for i in a:
         usrname = i.owner_username
-        if usrname not in set_list:
-            set_list.append(usrname)
-        else:
-            if usrname not in doubles:
-                doubles.append(usrname)
-    
-    return set_list, doubles
+        f= open(path,"a+")
+        f.write(usrname+'\n')
+        f.close()
+    return set_list, doubles, alll
 
 username, password = get_credentials()
-set_list, doubles = get_saved(username,password)
+set_list, doubles, alll = get_saved(username,password)
 
 answer = "a"
 while(answer != "q"):
