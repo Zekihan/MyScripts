@@ -1,0 +1,751 @@
+{
+    "TimeCreated": "20201006T193038",
+    "Name": "Macro (1)",
+    "Events": [
+        {
+            "Timestamp": 918,
+            "Msg": "{\"EventAction\":\"RunApp\",\"Package\":\"trendyol.com\",\"Activity\":\"com.trendyol.ui.splash.SplashActivity\"}",
+            "EventType": "Client"
+        },
+        {
+            "Timestamp": 991,
+            "Msg": "{\"EventAction\":\"TabSelected\",\"tabKey\":\"trendyol.com\"}",
+            "EventType": "Client"
+        },
+        {
+            "Timestamp": 7179,
+            "X": 85.19,
+            "Y": 96.69,
+            "Delta": 0,
+            "EventType": "MouseDown"
+        },
+        {
+            "Timestamp": 7310,
+            "X": 85.19,
+            "Y": 96.69,
+            "Delta": 0,
+            "EventType": "MouseUp"
+        },
+        {
+            "Timestamp": 9294,
+            "X": 53.81,
+            "Y": 68.38,
+            "Delta": 0,
+            "EventType": "MouseDown"
+        },
+        {
+            "Timestamp": 9414,
+            "X": 53.81,
+            "Y": 68.38,
+            "Delta": 0,
+            "EventType": "MouseUp"
+        },
+        {
+            "Timestamp": 12955,
+            "X": 53.81,
+            "Y": 68.38,
+            "Delta": 0,
+            "EventType": "MouseDown"
+        },
+        {
+            "Timestamp": 13050,
+            "X": 53.81,
+            "Y": 68.38,
+            "Delta": 0,
+            "EventType": "MouseUp"
+        },
+        {
+            "Timestamp": 14185,
+            "X": 62.75,
+            "Y": 67.89,
+            "Delta": 0,
+            "EventType": "MouseDown"
+        },
+        {
+            "Timestamp": 14294,
+            "X": 62.75,
+            "Y": 67.89,
+            "Delta": 0,
+            "EventType": "MouseUp"
+        },
+        {
+            "Timestamp": 16300,
+            "X": 62.75,
+            "Y": 67.89,
+            "Delta": 0,
+            "EventType": "MouseDown"
+        },
+        {
+            "Timestamp": 16450,
+            "X": 62.75,
+            "Y": 67.89,
+            "Delta": 0,
+            "EventType": "MouseUp"
+        },
+        {
+            "Timestamp": 18142,
+            "X": 34.64,
+            "Y": 31.25,
+            "Delta": 0,
+            "EventType": "MouseDown"
+        },
+        {
+            "Timestamp": 18252,
+            "X": 34.64,
+            "Y": 31.25,
+            "Delta": 0,
+            "EventType": "MouseUp"
+        },
+        {
+            "Timestamp": 19355,
+            "KeyName": "P",
+            "EventType": "KeyDown"
+        },
+        {
+            "Timestamp": 19356,
+            "Msg": "start_p_end del=0 enter=0",
+            "EventType": "IME"
+        },
+        {
+            "Timestamp": 19498,
+            "KeyName": "P",
+            "EventType": "KeyUp"
+        },
+        {
+            "Timestamp": 19709,
+            "KeyName": "T",
+            "EventType": "KeyDown"
+        },
+        {
+            "Timestamp": 19709,
+            "Msg": "start_t_end del=0 enter=0",
+            "EventType": "IME"
+        },
+        {
+            "Timestamp": 19816,
+            "KeyName": "T",
+            "EventType": "KeyUp"
+        },
+        {
+            "Timestamp": 20043,
+            "KeyName": "J",
+            "EventType": "KeyDown"
+        },
+        {
+            "Timestamp": 20044,
+            "Msg": "start_j_end del=0 enter=0",
+            "EventType": "IME"
+        },
+        {
+            "Timestamp": 20170,
+            "KeyName": "J",
+            "EventType": "KeyUp"
+        },
+        {
+            "Timestamp": 20462,
+            "KeyName": "2",
+            "EventType": "KeyDown"
+        },
+        {
+            "Timestamp": 20463,
+            "Msg": "start_2_end del=0 enter=0",
+            "EventType": "IME"
+        },
+        {
+            "Timestamp": 20598,
+            "KeyName": "2",
+            "EventType": "KeyUp"
+        },
+        {
+            "Timestamp": 20838,
+            "KeyName": "V",
+            "EventType": "KeyDown"
+        },
+        {
+            "Timestamp": 20840,
+            "Msg": "start_v_end del=0 enter=0",
+            "EventType": "IME"
+        },
+        {
+            "Timestamp": 20974,
+            "KeyName": "V",
+            "EventType": "KeyUp"
+        },
+        {
+            "Timestamp": 22058,
+            "KeyName": "H",
+            "EventType": "KeyDown"
+        },
+        {
+            "Timestamp": 22059,
+            "Msg": "start_h_end del=0 enter=0",
+            "EventType": "IME"
+        },
+        {
+            "Timestamp": 22233,
+            "KeyName": "H",
+            "EventType": "KeyUp"
+        },
+        {
+            "Timestamp": 23071,
+            "KeyName": "T",
+            "EventType": "KeyDown"
+        },
+        {
+            "Timestamp": 23072,
+            "Msg": "start_t_end del=0 enter=0",
+            "EventType": "IME"
+        },
+        {
+            "Timestamp": 23149,
+            "KeyName": "T",
+            "EventType": "KeyUp"
+        },
+        {
+            "Timestamp": 23477,
+            "KeyName": "5",
+            "EventType": "KeyDown"
+        },
+        {
+            "Timestamp": 23477,
+            "Msg": "start_5_end del=0 enter=0",
+            "EventType": "IME"
+        },
+        {
+            "Timestamp": 23610,
+            "KeyName": "5",
+            "EventType": "KeyUp"
+        },
+        {
+            "Timestamp": 24356,
+            "KeyName": "C",
+            "EventType": "KeyDown"
+        },
+        {
+            "Timestamp": 24356,
+            "Msg": "start_c_end del=0 enter=0",
+            "EventType": "IME"
+        },
+        {
+            "Timestamp": 24597,
+            "KeyName": "C",
+            "EventType": "KeyUp"
+        },
+        {
+            "Timestamp": 24610,
+            "KeyName": "T",
+            "EventType": "KeyDown"
+        },
+        {
+            "Timestamp": 24610,
+            "Msg": "start_t_end del=0 enter=0",
+            "EventType": "IME"
+        },
+        {
+            "Timestamp": 24793,
+            "KeyName": "T",
+            "EventType": "KeyUp"
+        },
+        {
+            "Timestamp": 26428,
+            "KeyName": "Ctrl",
+            "EventType": "KeyDown"
+        },
+        {
+            "Timestamp": 26431,
+            "KeyName": "Alt",
+            "EventType": "KeyDown"
+        },
+        {
+            "Timestamp": 26638,
+            "KeyName": "Q",
+            "EventType": "KeyDown"
+        },
+        {
+            "Timestamp": 26638,
+            "Msg": "start_@_end del=0 enter=0",
+            "EventType": "IME"
+        },
+        {
+            "Timestamp": 26747,
+            "KeyName": "Q",
+            "EventType": "KeyUp"
+        },
+        {
+            "Timestamp": 26875,
+            "KeyName": "Ctrl",
+            "EventType": "KeyUp"
+        },
+        {
+            "Timestamp": 26876,
+            "KeyName": "Alt",
+            "EventType": "KeyUp"
+        },
+        {
+            "Timestamp": 27306,
+            "KeyName": "G",
+            "EventType": "KeyDown"
+        },
+        {
+            "Timestamp": 27307,
+            "Msg": "start_g_end del=0 enter=0",
+            "EventType": "IME"
+        },
+        {
+            "Timestamp": 27373,
+            "KeyName": "G",
+            "EventType": "KeyUp"
+        },
+        {
+            "Timestamp": 27843,
+            "KeyName": "M",
+            "EventType": "KeyDown"
+        },
+        {
+            "Timestamp": 27844,
+            "Msg": "start_m_end del=0 enter=0",
+            "EventType": "IME"
+        },
+        {
+            "Timestamp": 27951,
+            "KeyName": "M",
+            "EventType": "KeyUp"
+        },
+        {
+            "Timestamp": 28039,
+            "KeyName": "A",
+            "EventType": "KeyDown"
+        },
+        {
+            "Timestamp": 28040,
+            "Msg": "start_a_end del=0 enter=0",
+            "EventType": "IME"
+        },
+        {
+            "Timestamp": 28116,
+            "KeyName": "A",
+            "EventType": "KeyUp"
+        },
+        {
+            "Timestamp": 28511,
+            "KeyName": "Oem7",
+            "EventType": "KeyDown"
+        },
+        {
+            "Timestamp": 28512,
+            "Msg": "start_i_end del=0 enter=0",
+            "EventType": "IME"
+        },
+        {
+            "Timestamp": 28631,
+            "KeyName": "Oem7",
+            "EventType": "KeyUp"
+        },
+        {
+            "Timestamp": 28786,
+            "KeyName": "L",
+            "EventType": "KeyDown"
+        },
+        {
+            "Timestamp": 28786,
+            "Msg": "start_l_end del=0 enter=0",
+            "EventType": "IME"
+        },
+        {
+            "Timestamp": 28861,
+            "KeyName": "L",
+            "EventType": "KeyUp"
+        },
+        {
+            "Timestamp": 29274,
+            "KeyName": "OemPeriod",
+            "EventType": "KeyDown"
+        },
+        {
+            "Timestamp": 29275,
+            "Msg": "start_._end del=0 enter=0",
+            "EventType": "IME"
+        },
+        {
+            "Timestamp": 29378,
+            "KeyName": "OemPeriod",
+            "EventType": "KeyUp"
+        },
+        {
+            "Timestamp": 29521,
+            "KeyName": "C",
+            "EventType": "KeyDown"
+        },
+        {
+            "Timestamp": 29522,
+            "Msg": "start_c_end del=0 enter=0",
+            "EventType": "IME"
+        },
+        {
+            "Timestamp": 29596,
+            "KeyName": "C",
+            "EventType": "KeyUp"
+        },
+        {
+            "Timestamp": 29811,
+            "KeyName": "O",
+            "EventType": "KeyDown"
+        },
+        {
+            "Timestamp": 29812,
+            "Msg": "start_o_end del=0 enter=0",
+            "EventType": "IME"
+        },
+        {
+            "Timestamp": 29962,
+            "KeyName": "M",
+            "EventType": "KeyDown"
+        },
+        {
+            "Timestamp": 29963,
+            "Msg": "start_m_end del=0 enter=0",
+            "EventType": "IME"
+        },
+        {
+            "Timestamp": 30012,
+            "KeyName": "O",
+            "EventType": "KeyUp"
+        },
+        {
+            "Timestamp": 30112,
+            "KeyName": "M",
+            "EventType": "KeyUp"
+        },
+        {
+            "Timestamp": 31906,
+            "X": 31.15,
+            "Y": 37.5,
+            "Delta": 0,
+            "EventType": "MouseDown"
+        },
+        {
+            "Timestamp": 32032,
+            "X": 31.15,
+            "Y": 37.5,
+            "Delta": 0,
+            "EventType": "MouseUp"
+        },
+        {
+            "Timestamp": 33527,
+            "KeyName": "A",
+            "EventType": "KeyDown"
+        },
+        {
+            "Timestamp": 33528,
+            "Msg": "start_a_end del=0 enter=0",
+            "EventType": "IME"
+        },
+        {
+            "Timestamp": 33667,
+            "KeyName": "A",
+            "EventType": "KeyUp"
+        },
+        {
+            "Timestamp": 33836,
+            "KeyName": "S",
+            "EventType": "KeyDown"
+        },
+        {
+            "Timestamp": 33836,
+            "Msg": "start_s_end del=0 enter=0",
+            "EventType": "IME"
+        },
+        {
+            "Timestamp": 33939,
+            "KeyName": "S",
+            "EventType": "KeyUp"
+        },
+        {
+            "Timestamp": 34179,
+            "KeyName": "D",
+            "EventType": "KeyDown"
+        },
+        {
+            "Timestamp": 34180,
+            "Msg": "start_d_end del=0 enter=0",
+            "EventType": "IME"
+        },
+        {
+            "Timestamp": 34329,
+            "KeyName": "D",
+            "EventType": "KeyUp"
+        },
+        {
+            "Timestamp": 34552,
+            "KeyName": "F",
+            "EventType": "KeyDown"
+        },
+        {
+            "Timestamp": 34553,
+            "Msg": "start_f_end del=0 enter=0",
+            "EventType": "IME"
+        },
+        {
+            "Timestamp": 34677,
+            "KeyName": "F",
+            "EventType": "KeyUp"
+        },
+        {
+            "Timestamp": 34977,
+            "KeyName": "1",
+            "EventType": "KeyDown"
+        },
+        {
+            "Timestamp": 34978,
+            "Msg": "start_1_end del=0 enter=0",
+            "EventType": "IME"
+        },
+        {
+            "Timestamp": 35130,
+            "KeyName": "1",
+            "EventType": "KeyUp"
+        },
+        {
+            "Timestamp": 35377,
+            "KeyName": "2",
+            "EventType": "KeyDown"
+        },
+        {
+            "Timestamp": 35378,
+            "Msg": "start_2_end del=0 enter=0",
+            "EventType": "IME"
+        },
+        {
+            "Timestamp": 35527,
+            "KeyName": "2",
+            "EventType": "KeyUp"
+        },
+        {
+            "Timestamp": 35729,
+            "KeyName": "3",
+            "EventType": "KeyDown"
+        },
+        {
+            "Timestamp": 35729,
+            "Msg": "start_3_end del=0 enter=0",
+            "EventType": "IME"
+        },
+        {
+            "Timestamp": 35856,
+            "KeyName": "3",
+            "EventType": "KeyUp"
+        },
+        {
+            "Timestamp": 36113,
+            "KeyName": "4",
+            "EventType": "KeyDown"
+        },
+        {
+            "Timestamp": 36114,
+            "Msg": "start_4_end del=0 enter=0",
+            "EventType": "IME"
+        },
+        {
+            "Timestamp": 36232,
+            "KeyName": "4",
+            "EventType": "KeyUp"
+        },
+        {
+            "Timestamp": 37809,
+            "X": 33.12,
+            "Y": 50.12,
+            "Delta": 0,
+            "EventType": "MouseDown"
+        },
+        {
+            "Timestamp": 37951,
+            "X": 33.12,
+            "Y": 50.12,
+            "Delta": 0,
+            "EventType": "MouseUp"
+        },
+        {
+            "Timestamp": 38538,
+            "X": 12.2,
+            "Y": 57.48,
+            "Delta": 0,
+            "EventType": "MouseDown"
+        },
+        {
+            "Timestamp": 38648,
+            "X": 12.2,
+            "Y": 57.48,
+            "Delta": 0,
+            "EventType": "MouseUp"
+        },
+        {
+            "Timestamp": 39298,
+            "X": 48.8,
+            "Y": 62.5,
+            "Delta": 0,
+            "EventType": "MouseDown"
+        },
+        {
+            "Timestamp": 39416,
+            "X": 48.8,
+            "Y": 62.5,
+            "Delta": 0,
+            "EventType": "MouseUp"
+        },
+        {
+            "Timestamp": 44479,
+            "Msg": "{\"EventAction\":\"TabSelected\",\"tabKey\":\"Home\"}",
+            "EventType": "Client"
+        },
+        {
+            "Timestamp": 47500,
+            "Msg": "{\"EventAction\":\"RunApp\",\"Package\":\"com.android.chrome\",\"Activity\":\"org.chromium.chrome.browser.ChromeTabbedActivity\"}",
+            "EventType": "Client"
+        },
+        {
+            "Timestamp": 47593,
+            "Msg": "{\"EventAction\":\"TabSelected\",\"tabKey\":\"com.android.chrome\"}",
+            "EventType": "Client"
+        },
+        {
+            "Timestamp": 51386,
+            "X": 52.14,
+            "Y": 10.54,
+            "Delta": 0,
+            "EventType": "MouseDown"
+        },
+        {
+            "Timestamp": 51439,
+            "X": 52.14,
+            "Y": 10.54,
+            "Delta": 0,
+            "EventType": "MouseUp"
+        },
+        {
+            "Timestamp": 52655,
+            "X": 13.93,
+            "Y": 38.48,
+            "Delta": 0,
+            "EventType": "MouseDown"
+        },
+        {
+            "Timestamp": 52755,
+            "X": 13.93,
+            "Y": 38.48,
+            "Delta": 0,
+            "EventType": "MouseUp"
+        },
+        {
+            "Timestamp": 54040,
+            "Msg": "{\"EventAction\":\"TabSelected\",\"tabKey\":\"trendyol.com\"}",
+            "EventType": "Client"
+        },
+        {
+            "Timestamp": 58041,
+            "X": 90.41,
+            "Y": 6.25,
+            "Delta": 0,
+            "EventType": "MouseDown"
+        },
+        {
+            "Timestamp": 58142,
+            "X": 90.41,
+            "Y": 6.25,
+            "Delta": 0,
+            "EventType": "MouseUp"
+        },
+        {
+            "Timestamp": 61204,
+            "X": 90.41,
+            "Y": 96.2,
+            "Delta": 0,
+            "EventType": "MouseDown"
+        },
+        {
+            "Timestamp": 61368,
+            "X": 90.41,
+            "Y": 96.2,
+            "Delta": 0,
+            "EventType": "MouseUp"
+        },
+        {
+            "Timestamp": 62804,
+            "X": 24.62,
+            "Y": 56.99,
+            "Delta": 0,
+            "EventType": "MouseDown"
+        },
+        {
+            "Timestamp": 62896,
+            "X": 24.62,
+            "Y": 56.99,
+            "Delta": 0,
+            "EventType": "MouseUp"
+        },
+        {
+            "Timestamp": 66298,
+            "X": 14.38,
+            "Y": 71.69,
+            "Delta": 0,
+            "EventType": "MouseDown"
+        },
+        {
+            "Timestamp": 66446,
+            "X": 14.38,
+            "Y": 71.69,
+            "Delta": 0,
+            "EventType": "MouseUp"
+        },
+        {
+            "Timestamp": 68194,
+            "X": 70.15,
+            "Y": 57.72,
+            "Delta": 0,
+            "EventType": "MouseDown"
+        },
+        {
+            "Timestamp": 68320,
+            "X": 70.15,
+            "Y": 57.72,
+            "Delta": 0,
+            "EventType": "MouseUp"
+        },
+        {
+            "Timestamp": 72036,
+            "Msg": "{\"EventAction\":\"TabClosed\",\"tabKey\":\"trendyol.com\",\"sendStopAppToAndroid\":\"True\",\"forceClose\":\"False\"}",
+            "EventType": "Client"
+        },
+        {
+            "Timestamp": 72049,
+            "Msg": "{\"EventAction\":\"RunApp\",\"Package\":\"com.android.chrome\",\"Activity\":\"org.chromium.chrome.browser.ChromeTabbedActivity\"}",
+            "EventType": "Client"
+        },
+        {
+            "Timestamp": 72091,
+            "Msg": "{\"EventAction\":\"TabSelected\",\"tabKey\":\"com.android.chrome\"}",
+            "EventType": "Client"
+        },
+        {
+            "Timestamp": 73249,
+            "Msg": "{\"EventAction\":\"TabClosed\",\"tabKey\":\"com.android.chrome\",\"sendStopAppToAndroid\":\"True\",\"forceClose\":\"False\"}",
+            "EventType": "Client"
+        },
+        {
+            "Timestamp": 73305,
+            "Msg": "{\"EventAction\":\"TabSelected\",\"tabKey\":\"Home\"}",
+            "EventType": "Client"
+        }
+    ],
+    "LoopType": "TillLoopNumber",
+    "LoopNumber": 1,
+    "LoopTime": 0,
+    "LoopInterval": 0,
+    "Acceleration": 1.0,
+    "PlayOnStart": false,
+    "DonotShowWindowOnFinish": false,
+    "RestartPlayer": false,
+    "RestartPlayerAfterMinutes": 60,
+    "ShortCut": "",
+    "UserName": "",
+    "MacroId": ""
+}
